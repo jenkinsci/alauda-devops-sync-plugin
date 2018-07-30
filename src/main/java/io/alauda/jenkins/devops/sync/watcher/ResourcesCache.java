@@ -28,10 +28,6 @@ public class ResourcesCache {
         return RESOURCES_CACHE;
     }
 
-    public String getJenkinsService() {
-        return jenkinsService;
-    }
-
     public void setJenkinsService(String jenkinsService) {
         this.jenkinsService = jenkinsService;
     }

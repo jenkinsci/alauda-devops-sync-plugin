@@ -1,4 +1,4 @@
-package io.alauda.jenkins.devops.sync.credential;
+package io.alauda.jenkins.devops.sync;
 
 import com.cloudbees.plugins.credentials.CredentialsScope;
 import com.cloudbees.plugins.credentials.impl.BaseStandardCredentials;

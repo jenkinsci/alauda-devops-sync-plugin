@@ -25,7 +25,6 @@ import hudson.model.Queue;
 
 import io.alauda.jenkins.devops.sync.listener.PipelineSyncRunListener;
 import io.alauda.jenkins.devops.sync.util.AlaudaUtils;
-import io.alauda.jenkins.devops.sync.util.PipelineGenerator;
 import io.alauda.jenkins.devops.sync.util.PipelineToActionMapper;
 import io.alauda.kubernetes.api.model.Pipeline;
 import io.alauda.kubernetes.api.model.PipelineConfig;
@@ -54,15 +53,16 @@ public class PipelineDecisionHandler extends Queue.QueueDecisionHandler {
             WorkflowJob workflowJob = (WorkflowJob) p;
             String taskName = p.getName();
             PipelineConfigProjectProperty pipelineConfigProjectProperty = workflowJob.getProperty(PipelineConfigProjectProperty.class);
-            if (pipelineConfigProjectProperty == null || !hasValidProperty(workflowJob)) {
+            if (!hasValidProperty(workflowJob)) {
                 return true;
             }
+
 
             String namespace = pipelineConfigProjectProperty.getNamespace();
             String jobURL = PipelineSyncRunListener.joinPaths(AlaudaUtils.getJenkinsURL(AlaudaUtils.getAuthenticatedAlaudaClient(), namespace), workflowJob.getUrl());
 
             LOGGER.info("Got this namespace " + namespace + " from this pipelineConfigProjectProperty: "
-                    + pipelineConfigProjectProperty);
+                    + pipelineConfigProjectProperty + " with run policy: " + pipelineConfigProjectProperty.getPipelineRunPolicy());
             // TODO: Add trigger API for pipelineconfig (like above)
 
             PipelineConfig config = null;
@@ -120,6 +120,7 @@ public class PipelineDecisionHandler extends Queue.QueueDecisionHandler {
 
     private boolean hasValidProperty(WorkflowJob workflowJob) {
         PipelineConfigProjectProperty property = workflowJob.getProperty(PipelineConfigProjectProperty.class);
+
         if (property == null) {
             return false;
         }

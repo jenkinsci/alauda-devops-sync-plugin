@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.alauda.jenkins.devops.sync.util;
+package io.alauda.jenkins.devops.sync;
 
 import io.alauda.kubernetes.api.model.HasMetadata;
 import io.alauda.kubernetes.api.model.ObjectMeta;

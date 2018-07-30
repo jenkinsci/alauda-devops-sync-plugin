@@ -2,8 +2,8 @@
 
 set -e
 
-TOKEN_ADMIN="c6fc6a59033d1144fec5a565cb2b6796"
-ADDRESS="http://localhost:30251"
+TOKEN_ADMIN="76f4ff3c7a5fe8fe8fcaf54fe17153d7"
+ADDRESS="http://localhost:30427"
 NAMESPACE=default-1
 DEPLOY=jenkins
 
